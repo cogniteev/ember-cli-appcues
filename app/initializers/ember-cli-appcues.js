@@ -12,7 +12,8 @@ export function initialize(application) {
     return;
   }
 
-  application.lookup('service:appcues').set('config', addonConfig);
+  application.register('config:appcues', addonConfig, { instantiate: false });
+  application.inject('service:appcues', 'config', 'config:appcues');
 
   /**
    * Automatically notify that application state has changed.
