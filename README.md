@@ -1,24 +1,44 @@
-ember-cli-appcues
-==============================================================================
+# ember-cli-appcues
 
-[Short description of the addon.]
+Easily add AppCues to your app.
 
-Installation
-------------------------------------------------------------------------------
+## Installation
 
 ```
+# From within your ember-cli project
 ember install ember-cli-appcues
 ```
 
 
-Usage
-------------------------------------------------------------------------------
+## Usage
 
-[Longer description of how to use the addon in apps.]
+Configure your AppCues App ID:
+
+```js
+// config/environment.js
+ENV['ember-cli-appcues'] = {
+  accountId: '[YOUR_ACCOUNT_ID]'
+};
+```
+
+## API
+
+This service exposes some of the [AppCues Javascript API](https://docs.appcues.com/article/161-javascript-api).
+
+- `Appcues.identify(userId, userProperties = {})`
+
+```js
+  this.get('appcues').identify(userId, userProperties)
+```
+
+- `Appcues.page()`
+
+```js
+  this.get('appcues').page()
+```
 
 
-Contributing
-------------------------------------------------------------------------------
+## Contributing
 
 ### Installation
 
@@ -45,7 +65,6 @@ Contributing
 
 For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
 
-License
-------------------------------------------------------------------------------
+## License
 
 This project is licensed under the [MIT License](LICENSE.md).
