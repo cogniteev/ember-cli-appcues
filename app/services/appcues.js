@@ -1,6 +1,6 @@
 /* global Appcues */
 import Service from '@ember/service';
-import { empty, readOnly } from '@ember/object/computed';
+import { empty } from '@ember/object/computed';
 import { resolve } from 'rsvp';
 import loadScript from 'ember-cli-appcues/utils/load-script';
 
@@ -16,7 +16,12 @@ export default Service.extend({
 
   disabled: empty('config.accountId'),
 
-  isSessionCreated: readOnly('_sessionCreated'),
+  /**
+   * @return true if identify() or anonymous() was called, false otherwise.
+   */
+  isSessionCreated() {
+    return this.get('_sessionCreated');
+  },
 
   /**
    * Adds AppCues tag into the application.
