@@ -22,7 +22,9 @@ export function initialize(application) {
     appcues: inject(),
 
     notifyAppCues: on('didTransition', function() {
-      scheduleOnce('afterRender', () => this.get('appcues').page());
+      if (this.get('appcues').isSessionCreated()) {
+        scheduleOnce('afterRender', () => this.get('appcues').page());
+      }
     })
   });
 }

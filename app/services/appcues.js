@@ -1,6 +1,6 @@
 /* global Appcues */
 import Service from '@ember/service';
-import { empty } from '@ember/object/computed';
+import { empty, readOnly } from '@ember/object/computed';
 import { resolve } from 'rsvp';
 import loadScript from 'ember-cli-appcues/utils/load-script';
 
@@ -12,7 +12,11 @@ export default Service.extend({
   // injected by initializer
   config: null,
 
+  _sessionCreated: false,
+
   disabled: empty('config.accountId'),
+
+  isSessionCreated: readOnly('_sessionCreated'),
 
   /**
    * Adds AppCues tag into the application.
@@ -29,13 +33,25 @@ export default Service.extend({
    * Identifies the current user with an ID and an optional set of properties.
    */
   identify(userId, properties = {}) {
-    return this._proxy('page', userId, properties);
+    return this._proxy('page', userId, properties)
+      .then(() => this.set('_sessionCreated', true))
+  },
+
+  /**
+   * Generates a session-based unique ID for the current user.
+   */
+  anonymous() {
+    return this._proxy('anonymous')
+      .then(() => this.set('_sessionCreated', true));
   },
 
   /**
    * Notifies the SDK that the state of the application has changed.
    */
   page() {
+    if (!this.isSessionCreated()) {
+      throw new Error('Need to call identify or anonymous first');
+    }
     return this._proxy('page');
   },
 
@@ -46,7 +62,11 @@ export default Service.extend({
    * This is useful when your user logs out of your application.
    */
   reset() {
-    return this._proxy('reset');
+    if (!this.isSessionCreated()) {
+      throw new Error('Need to call identify or anonymous first');
+    }
+    return this._proxy('reset')
+      .then(() => this.set('_sessionCreated', false));
   },
 
   /**

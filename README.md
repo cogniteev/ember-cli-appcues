@@ -37,6 +37,12 @@ This service exposes some of the [AppCues Javascript API](https://docs.appcues.c
   this.get('appcues').page()
 ```
 
+- `Appcues.anonymous()`
+
+```js
+  this.get('appcues').anonymous()
+```
+
 - `Appcues.reset()`
 
 ```js
