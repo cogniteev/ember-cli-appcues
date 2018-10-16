@@ -2,15 +2,17 @@ import Router from '@ember/routing/router';
 import { scheduleOnce } from '@ember/runloop';
 import { inject } from '@ember/service';
 import { on } from '@ember/object/evented';
-import { getOwner } from '@ember/application';
+import config from '../config/environment';
 
-export function initialize(/* application */) {
-  const config = getOwner(this).resolveRegistration('config:environment');
 
-  const hasAccountId = config['ember-cli-appcues'] && config['ember-cli-appcues']['accountId'];
-  if (!hasAccountId) {
+export function initialize(application) {
+  const addonConfig = config['ember-ali-appcues'] || {};
+
+  if (!addonConfig.accountId) {
     return;
   }
+
+  application.lookup('service:appcues').set('config', addonConfig);
 
   /**
    * Automatically notify that application state has changed.

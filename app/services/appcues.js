@@ -1,7 +1,5 @@
 /* global Appcues */
 import Service from '@ember/service';
-import { getOwner } from '@ember/application';
-import { computed } from '@ember/object';
 import { empty } from '@ember/object/computed';
 import { resolve } from 'rsvp';
 import loadScript from 'ember-cli-appcues/utils/load-script';
@@ -11,9 +9,8 @@ import loadScript from 'ember-cli-appcues/utils/load-script';
  */
 export default Service.extend({
 
-  config: computed(function() {
-    return getOwner(this).resolveRegistration('config:environment');
-  }),
+  // injected by initializer
+  config: null,
 
   disabled: empty('config.accountId'),
 
