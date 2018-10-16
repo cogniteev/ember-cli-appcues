@@ -40,6 +40,16 @@ export default Service.extend({
   },
 
   /**
+   * Clears all known information about the current user in this session.
+   *
+   * This call will clear the flow in progress and wipe any data we generate for a user.
+   * This is useful when your user logs out of your application.
+   */
+  reset() {
+    return this._proxy('reset');
+  },
+
+  /**
    * Proxify call to the Appcues SDK if service is enabled & loaded.
    *
    * @private
