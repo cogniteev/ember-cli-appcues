@@ -6,7 +6,7 @@ import config from '../config/environment';
 
 
 export function initialize(application) {
-  const addonConfig = config['ember-ali-appcues'] || {};
+  const addonConfig = config['ember-cli-appcues'] || {};
 
   if (!addonConfig.accountId) {
     return;
