@@ -5,6 +5,9 @@
 # dependencies
 /bower_components/
 
+# IDEA
+/.idea
+
 # misc
 /.bowerrc
 /.editorconfig
