@@ -1,15 +1,21 @@
 {
   "name": "ember-cli-appcues",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.0.1",
+  "description": "Ember addon to easily add Appcues to your app.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "appcues",
+    "ember-cli",
+    "ember",
+    "onboarding"
   ],
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:cogniteev/ember-cli-appcues.git"
+  },
   "license": "MIT",
-  "author": "",
+  "author": "Cogniteev <techteam@cogniteev.com>",
   "directories": {
-    "doc": "doc",
     "test": "tests"
   },
   "scripts": {
@@ -21,7 +27,7 @@
     "test:all": "ember try:each"
   },
   "dependencies": {
-    "ember-cli-babel": "^6.16.0"
+    "ember-cli-babel": "^7.1.2"
   },
   "devDependencies": {
     "@ember/optional-features": "^0.6.3",
