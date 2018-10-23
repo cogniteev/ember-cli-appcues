@@ -11,8 +11,6 @@ ember install ember-cli-appcues
 
 ## Configuration
 
-Configure your AppCues App ID:
-
 Add your Appcues App ID into your `config/environment.js` file:
 
 ```js
