@@ -74,7 +74,7 @@ This service exposes some of the [AppCues Javascript API](https://docs.appcues.c
 - `Appcues.debug()`
 
 ```js
-  this.get('appcues').denug()
+  this.get('appcues').debug()
 ```
 
 - `Appcues.reset()`
